@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 
-@SuppressWarnings("ALL")
 @Entity
 @JsonTypeName("hospede")
 @Table(name = "cliente_hospede")

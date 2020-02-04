@@ -1,4 +1,4 @@
-package br.com.minhareserva.controle;
+package br.com.minhareserva.controle.rest;
 
 import br.com.minhareserva.modelo.negocio.persistencia.entidade.Cliente;
 import br.com.minhareserva.modelo.negocio.persistencia.entidade.Hospede;
@@ -12,25 +12,19 @@ import java.util.List;
 @RestController
 @NoArgsConstructor
 @RequestMapping("/")
-public class ClienteControle {
+public class ClienteRest {
 
     @Autowired
     private ClienteServico clienteServico;
 
     @PostMapping("/cliente/login")
     public Cliente login(@RequestBody Cliente cliente) {
-        System.out.println(cliente.getContato().getEmail());
         cliente = this.clienteServico.autenticar(cliente.getContato().getEmail(), cliente.getSenha());
         return cliente;
     }
 
-    @GetMapping("/clientes")
-    public List<Cliente> listaClientes() {
-        return this.clienteServico.listaDeClientes();
-    }
-
-    @PutMapping("/cadastro/hospede")
-    public void salvarHospede(Hospede hospede) {
-        this.clienteServico.cadastrarCliente(hospede);
+    @PutMapping("/cadastro/cliente")
+    public <T extends Cliente> void salvarCliente(@RequestBody T cliente) {
+        this.clienteServico.cadastrarCliente(cliente);
     }
 }

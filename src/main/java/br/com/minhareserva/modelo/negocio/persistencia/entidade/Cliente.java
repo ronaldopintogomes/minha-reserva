@@ -14,7 +14,6 @@ import java.io.Serializable;
 @Entity
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-        @Type(value = Administrador.class, name="administrador"),
         @Type(value = Hospede.class, name="hospede"),
         @Type(value = Hoteleiro.class, name="hoteleiro")
 })

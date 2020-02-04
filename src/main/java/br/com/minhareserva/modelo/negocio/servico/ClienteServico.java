@@ -14,16 +14,20 @@ public class ClienteServico {
     @Autowired
     private ClienteRepositorio clienteRepositorio;
 
+    @Transactional(readOnly = true)
     public Cliente autenticar(String email, String senha) throws NullPointerException {
         return this.clienteRepositorio.buscaClientePorEmailESenha(email, senha);
     }
 
-    @Transactional
-    public void cadastrarCliente(Cliente cliente) {
-
+    @Transactional(readOnly = true)
+        public void cadastrarCliente(Cliente cliente) {
     }
 
+    @Transactional(readOnly = true)
     public List<Cliente> listaDeClientes() {
+
         return this.clienteRepositorio.findAll();
     }
+
+
 }
