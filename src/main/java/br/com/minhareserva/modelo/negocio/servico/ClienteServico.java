@@ -25,7 +25,6 @@ public class ClienteServico {
 
     @Transactional(readOnly = true)
     public List<Cliente> listaDeClientes() {
-
         return this.clienteRepositorio.findAll();
     }
 

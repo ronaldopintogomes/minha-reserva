@@ -8,5 +8,5 @@ import org.springframework.data.repository.query.Param;
 public interface AdministradorRepositorio extends JpaRepository<Administrador, Long> {
 
     @Query("Select adm From Administrador adm where adm.contato.email =:email and adm.senha =:senha")
-    public Administrador findAdministradorByEmailAndSenha(@Param("email") String email, @Param("senha") String senha);
+    public Administrador buscaAdministradorPorEmailESenha(@Param("email") String email, @Param("senha") String senha);
 }

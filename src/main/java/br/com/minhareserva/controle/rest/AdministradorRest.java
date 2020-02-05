@@ -28,28 +28,6 @@ public class AdministradorRest {
 
     @GetMapping("/lista/clientes")
     public List<Cliente> listaClientes() {
-        Administrador administrador = new Administrador();
-        administrador.setNome("Ronaldo");
-        administrador.setSenha("ronaldojava");
-        Contato contato = new Contato();
-        contato.setEmail("ronaldo.softsystem@gmail.com");
-        List<String> celulares = new ArrayList<String>();
-        celulares.add("988075552");
-        contato.setCelulares(celulares);
-        administrador.setContato(contato);
-        Endereco endereco = new Endereco();
-        endereco.setRua("05");
-        endereco.setNumero("08");
-        endereco.setBairro("Jardim maua");
-        endereco.setCidade("manaus");
-        endereco.setEstado("am");
-        administrador.setEndereco(endereco);
-        try {
-            administradorServico.consultaExistenciaDeConta(contato.getEmail(), administrador.getSenha());
-            administradorServico.cadastrar(administrador);
-        } catch (AdministradorException e) {
-            e.getMessage();
-        }
         return this.clienteServico.listaDeClientes();
     }
 }
