@@ -27,6 +27,9 @@ public class AdministradorRest {
     @Autowired
     private AdministradorServico administradorServico;
 
+    /**
+     * metodo listaDeAdministradores recebe recebe Optional<List<Administrador>> e retorna Lis<Administrador>
+     **/
     @GetMapping("/lista/administradores")
     private List<Administrador> listaAdministradores() {
         return administradorServico.listaDeAdministradores().get();
