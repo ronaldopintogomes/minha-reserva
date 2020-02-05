@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @NoArgsConstructor
@@ -25,6 +26,11 @@ public class AdministradorRest {
     private ClienteServico clienteServico;
     @Autowired
     private AdministradorServico administradorServico;
+
+    @GetMapping("/lista/administradores")
+    private List<Administrador> listaAdministradores() {
+        return administradorServico.listaDeAdministradores().get();
+    }
 
     @GetMapping("/lista/clientes")
     public List<Cliente> listaClientes() {
