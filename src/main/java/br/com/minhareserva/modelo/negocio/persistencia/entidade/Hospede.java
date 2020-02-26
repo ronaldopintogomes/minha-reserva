@@ -12,5 +12,4 @@ import javax.persistence.Table;
 public class Hospede extends Cliente {
 
     private static final long serialVersionUID = 1L;
-
 }

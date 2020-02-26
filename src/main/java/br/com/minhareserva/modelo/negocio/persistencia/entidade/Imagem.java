@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
+@Getter
+@Setter
 @Entity
 public class Imagem implements Serializable {
 
@@ -15,6 +17,5 @@ public class Imagem implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    @Getter @Setter
     private String url;
 }

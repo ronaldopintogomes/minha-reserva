@@ -3,11 +3,15 @@ package br.com.minhareserva.modelo.negocio.persistencia.entidade;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.List;
 
+@Getter
+@Setter
 @Entity
 public class Hotel implements Serializable {
 
@@ -15,10 +19,8 @@ public class Hotel implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    @Getter @Setter
     private int cnpj;
-    @Getter @Setter
     private Endereco endereco;
-    @Getter @Setter
-    private Imagem[] imagens;
+    @ElementCollection(targetClass = Imagem.class)
+    private List<Imagem> imagens;
 }

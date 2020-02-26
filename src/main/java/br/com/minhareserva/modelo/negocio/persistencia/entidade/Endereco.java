@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
+@Getter
+@Setter
 @Entity
 public class Endereco implements Serializable {
 
@@ -15,14 +17,9 @@ public class Endereco implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    @Getter @Setter
     private String numero;
-    @Getter @Setter
     private String rua;
-    @Getter @Setter
     private String bairro;
-    @Getter @Setter
     private String cidade;
-    @Getter @Setter
     private String Estado;
 }
