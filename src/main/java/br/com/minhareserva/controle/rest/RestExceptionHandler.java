@@ -2,6 +2,7 @@ package br.com.minhareserva.controle.rest;
 
 import br.com.minhareserva.modelo.negocio.excecao.ContaExistenteException;
 import br.com.minhareserva.modelo.negocio.excecao.ExceptionResponse;
+import br.com.minhareserva.modelo.negocio.excecao.NaoAutenticadoException;
 import br.com.minhareserva.modelo.negocio.excecao.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,15 +19,20 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ExceptionResponse> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest re) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(ex.getMessage(), re.getDescription(false), HttpStatus.NOT_FOUND.getReasonPhrase());
-        return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.NOT_FOUND);
+    @ExceptionHandler(value = {ResourceNotFoundException.class, ContaExistenteException.class, NaoAutenticadoException.class})
+    public ResponseEntity<ExceptionResponse> handleResourceCreatedException(RuntimeException exception, WebRequest request) {
+        HttpStatus status = httpStatus(exception);
+        ExceptionResponse exceptionResponse = new ExceptionResponse(exception.getMessage(), request.getDescription(false), status.getReasonPhrase());
+        return new ResponseEntity<ExceptionResponse>(exceptionResponse, status);
     }
 
-    @ExceptionHandler(ContaExistenteException.class)
-    public ResponseEntity<ExceptionResponse> handleResourceCreatedException(ContaExistenteException ex, WebRequest re) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(ex.getMessage(), re.getDescription(false), HttpStatus.CREATED.getReasonPhrase());
-        return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.CREATED);
+    private HttpStatus httpStatus(RuntimeException rutimeException) {
+        if(rutimeException instanceof ResourceNotFoundException)
+            return HttpStatus.NOT_FOUND;
+        if(rutimeException instanceof ContaExistenteException)
+            return HttpStatus.NOT_ACCEPTABLE;
+        if(rutimeException instanceof NaoAutenticadoException)
+            return HttpStatus.UNAUTHORIZED;
+        return HttpStatus.INTERNAL_SERVER_ERROR;
     }
 }

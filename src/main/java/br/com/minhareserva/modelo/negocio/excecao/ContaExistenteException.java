@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ContaExistenteException extends RuntimeException {
 
     public ContaExistenteException() {}
-    public ContaExistenteException(String mensagem) {
-        super(mensagem);
+    public ContaExistenteException(String message) {
+        super(message);
     }
 }

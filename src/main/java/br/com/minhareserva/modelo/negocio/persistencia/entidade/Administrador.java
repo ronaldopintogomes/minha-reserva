@@ -1,5 +1,6 @@
 package br.com.minhareserva.modelo.negocio.persistencia.entidade;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,9 +10,8 @@ import java.io.Serializable;
 @Setter
 @Getter
 @Entity
+@EqualsAndHashCode(of ={"id", "nome"})
 public class Administrador implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue

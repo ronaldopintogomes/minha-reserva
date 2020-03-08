@@ -17,11 +17,10 @@ import java.util.List;
 @NoArgsConstructor
 public class Contato implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
     private long id;
     private String email;
     @ElementCollection(targetClass = String.class)
-    private List<String> celulares;
+    private List<String> telefones;
 }

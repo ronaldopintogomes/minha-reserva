@@ -10,5 +10,4 @@ import javax.persistence.Table;
 @Table(name = "cliente_hoteleiro")
 public class Hoteleiro extends Cliente {
 
-    private static final long serialVersionUID = 1L;
 }

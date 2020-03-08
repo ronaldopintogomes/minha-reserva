@@ -1,7 +1,9 @@
 package br.com.minhareserva.modelo.negocio.persistencia.entidade;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,10 +12,11 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@ToString(of = {"numero", "rua", "bairro", "cidade", "estado"})
+@EqualsAndHashCode(of = {"id", "numero", "rua", "bairro", "cidade", "estado"})
 @Entity
 public class Endereco implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
     private long id;
@@ -21,5 +24,5 @@ public class Endereco implements Serializable {
     private String rua;
     private String bairro;
     private String cidade;
-    private String Estado;
+    private String estado;
 }
