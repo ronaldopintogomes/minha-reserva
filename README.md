@@ -1,2 +1,2 @@
 # minha-reserva
-Sistema de gerencimento e agendamento de reserva em hoteis e gerencimento hoteleiro
+Sistema de gerenciamento e agendamento de reservas em hoteis e gerenciamento hoteleiro
